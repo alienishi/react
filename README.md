@@ -29,21 +29,21 @@ Cheatsheets for experienced React developers getting started with TypeScript
 ## All React + TypeScript Cheatsheets
 
 - [The Basic Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup) is focused on helping React devs just start using TS in React **apps**
-  - Focus on opinionated best practices, copy+pastable examples.
+  - Focuses on opinionated best practices, copy+pastable examples.
   - Explains some basic TS types usage and setup along the way.
   - Answers the most Frequently Asked Questions.
-  - Does not cover generic type logic in detail. Instead we prefer to teach simple troubleshooting techniques for newbies.
+  - Does not cover generic type logic in detail. Instead, we prefer to teach simple troubleshooting techniques for newbies.
   - The goal is to get effective with TS without learning _too much_ TS.
-- [The Advanced Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/advanced) helps show and explain advanced usage of generic types for people writing reusable type utilities/functions/render prop/higher order components and TS+React **libraries**.
+- [The Advanced Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/advanced) helps show and explain advanced usage of generic types for people writing reusable type utilities/functions/render prop/higher-order components and TS+React **libraries**.
   - It also has miscellaneous tips and tricks for pro users.
   - Advice for contributing to DefinitelyTyped.
   - The goal is to take _full advantage_ of TypeScript.
 - [The Migrating Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/migration) helps collate advice for incrementally migrating large codebases from JS or Flow, **from people who have done it**.
   - We do not try to convince people to switch, only to help people who have already decided.
-  - ⚠️This is a new cheatsheet, all assistance is welcome.
+  - ⚠️This is a new cheatsheet; all assistance is welcome.
 - [The HOC Cheatsheet](https://react-typescript-cheatsheet.netlify.app/docs/hoc)) specifically teaches people to write HOCs with examples.
   - Familiarity with [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) is necessary.
-  - ⚠️This is the newest cheatsheet, all assistance is welcome.
+  - ⚠️This is the newest cheatsheet; all assistance is welcome.
 
 ---
 
@@ -146,12 +146,12 @@ Cheatsheets for experienced React developers getting started with TypeScript
 
 #### Prerequisites
 
-You can use this cheatsheet for reference at any skill level, but basic understanding of React and TypeScript is assumed. Here is a list of prerequisites:
+You can use this cheatsheet for reference at any skill level, but a basic understanding of React and TypeScript is assumed. Here is a list of prerequisites:
 
 - Basic understanding of [React](https://react.dev/).
 - Familiarity with [TypeScript Basics](https://www.typescriptlang.org/docs/handbook/2/basic-types.html) and [Everyday Types](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html).
 
-In the cheatsheet we assume you are using the latest versions of React and TypeScript.
+In the cheatsheet, we assume you are using the latest versions of React and TypeScript.
 
 #### React and TypeScript starter kits
 
@@ -189,14 +189,14 @@ type AppProps = {
 // Easiest way to declare a Function Component; return type is inferred.
 const App = ({ message }: AppProps) => <div>{message}</div>;
 
-// you can choose annotate the return type so an error is raised if you accidentally return some other type
+//You can choose to annotate the return type so an error is raised if you accidentally return some other type
 const App = ({ message }: AppProps): React.JSX.Element => <div>{message}</div>;
 
-// you can also inline the type declaration; eliminates naming the prop types, but looks repetitive
+//You can also inline the type declaration; eliminates naming the prop types but looks repetitive
 const App = ({ message }: { message: string }) => <div>{message}</div>;
 
 // Alternatively, you can use `React.FunctionComponent` (or `React.FC`), if you prefer.
-// With latest React types and TypeScript 5.1. it's mostly a stylistic choice, otherwise discouraged.
+// With the latest React types and TypeScript 5.1. it's mostly a stylistic choice, otherwise discouraged.
 const App: React.FunctionComponent<{ message: string }> = ({ message }) => (
   <div>{message}</div>
 );
@@ -222,7 +222,7 @@ Some differences from the "normal function" version:
 
 - `React.FunctionComponent` is explicit about the return type, while the normal function version is implicit (or else needs additional annotation).
 
-- It provides typechecking and autocomplete for static properties like `displayName`, `propTypes`, and `defaultProps`.
+- It provides type-checking and autocomplete for static properties like `displayName`, `propTypes`, and `defaultProps`.
 
   - Note that there are some known issues using `defaultProps` with `React.FunctionComponent`. See [this issue for details](https://github.com/typescript-cheatsheets/react/issues/87). We maintain a separate `defaultProps` section you can also look up.
 
@@ -319,7 +319,7 @@ const [user, setUser] = useState<User>({} as User);
 setUser(newUser);
 ```
 
-This temporarily "lies" to the TypeScript compiler that `{}` is of type `User`. You should follow up by setting the `user` state — if you don't, the rest of your code may rely on the fact that `user` is of type `User` and that may lead to runtime errors.
+This temporarily "lies" to the TypeScript compiler that `{}` is of type `User`. You should follow up by setting the `user` state — if you don't, the rest of your code may rely on the fact that `user` is of type `User`, and that may lead to runtime errors.
 
 #### useCallback
 
@@ -705,7 +705,7 @@ Don't forget that you can export/import/extend these types/interfaces for reuse.
 
 It isn't strictly necessary to annotate the `state` class property, but it allows better type inference when accessing `this.state` and also initializing the state.
 
-This is because they work in two different ways, the 2nd generic type parameter will allow `this.setState()` to work correctly, because that method comes from the base class, but initializing `state` inside the component overrides the base implementation so you have to make sure that you tell the compiler that you're not actually doing anything different.
+This is because they work in two different ways. the 2nd generic type parameter will allow `this.setState()` to work correctly because that method comes from the base class, but initializing `state` inside the component overrides the base implementation, so you have to make sure that you tell the compiler that you're not actually doing anything different.
 
 [See commentary by @ferdaber here](https://github.com/typescript-cheatsheets/react/issues/57).
 
